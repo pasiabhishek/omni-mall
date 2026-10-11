@@ -1,42 +1,16 @@
 @import "tailwindcss";
 
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-/* 2. Map your custom fonts directly inside the @theme directive for Tailwind v4 utility mapping */
 @theme {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  
-  /* Setting Noto Kufi Arabic as your default sans-serif font */
   --font-sans: "Noto Kufi Arabic", sans-serif;
-  --font-jim: "Jim Nightshade", cursive;
-  
-  /* Fallback definitions if --font-geist variables are coming from Next.js font layout configuration */
-  --font-geist-sans: inherit; 
-  --font-geist-mono: inherit;
 }
 
-/* 3. Apply standard styles to body (Removed invalid syntax like `<weight>`) */
 body {
-  background-color: var(--background);
-  color: var(--foreground);
   font-family: var(--font-sans);
   font-optical-sizing: auto;
   font-style: normal;
 }
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   display: none;
 }
 
@@ -60,10 +34,44 @@ body {
   }
 }
 
+.mousefollower {
+  border-radius: 50%;
+  height: 16px;
+  left: 0;
+  mix-blend-mode: difference;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  transform: translate(-50%, -50%);
+  transition: left 0.08s linear, top 0.08s linear, opacity 0.2s ease;
+  width: 16px;
+  z-index: 99999;
+}
+
+#behindmouse {
+  background-color: #fff;
+  height: 36px;
+  width: 36px;
+  z-index: 99998;
+  transition-duration: 0.22s, 0.22s, 0.2s;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .gallery-card,
   .gallery-card img {
     animation: none !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .mousefollower {
+    display: none !important;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .mousefollower {
+    display: none !important;
   }
 }
