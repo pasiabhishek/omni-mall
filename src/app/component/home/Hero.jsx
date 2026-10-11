@@ -5,13 +5,13 @@ import NavigateButton from "../common/NavigateButton";
 
 const Hero = () => {
     return (
-        <div className="relative min-h-screen min-h-[100svh] w-full overflow-hidden">
+        <div className="relative min-h-screen w-full overflow-hidden">
 
             {/* Background video */}
             <HeroBgVideo />
 
             {/* Hero overlay content */}
-            <div className="absolute inset-0 z-10 flex min-h-screen min-h-[100svh] flex-col justify-between">
+            <div className="absolute inset-0 z-10 flex min-h-screen flex-col justify-between gap-77 sm:gap-0">
 
                 <Header />
 
