@@ -23,13 +23,21 @@ export default function RootLayout({ children }) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
-    crossOrigin="anonymous"
-    referrerPolicy="no-referrer"
-  />
-</head>
+        {/* Corrected Google Font connection tags */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link 
+          href="https://fonts.googleapis.com/css2?family=Asimovian&family=Jim+Nightshade&family=Noto+Kufi+Arabic:wght@100..900&display=swap" 
+          rel="stylesheet" 
+        />
+        {/* Font Awesome CDN dependency */}
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
+        />
+      </head>
       <body className="flex min-h-full flex-col">
         {children}
       </body>

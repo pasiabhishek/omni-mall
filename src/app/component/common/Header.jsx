@@ -5,9 +5,9 @@ const Header = () => {
     return (
         <>
             {/* Header */}
-            <header className="absolute top-0 left-0 z-10 flex w-full items-center justify-around px-3 py-4 text-white sm:px-5 sm:py-5 md:px-8">
+            <header className=" top-0 left-0 z-10 flex w-full items-center justify-around px-3 py-4 text-white sm:px-5 sm:py-5 md:px-8">
 
-                <div className="brand flex shrink-0 items-center justify-center">
+                <div className="brand flex shrink-0 items-center justify-center m-auto">
                     <img
                         src="/images/brand-logo.png"
                         alt=""
