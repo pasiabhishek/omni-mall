@@ -1,13 +1,22 @@
-import React from 'react'
+import Link from 'next/link'
 
-const NavigateButton = (prop) => {
-    return (
-        <>
-            <button className="bg-red-100 text-gray-950 w-35 sm:w-50 py-3 rounded-3xl flex justify-center items-center hover:translate-y-[-5px]  duration-100">
-                {prop.text}
+const NavigateButton = ({ text, href }) => {
+    const className = "bg-red-100 text-gray-950 w-35 sm:w-50 py-3 rounded-3xl flex justify-center items-center hover:translate-y-[-5px] duration-100";
+
+    if (href) {
+        return (
+            <Link href={href} className={className}>
+                {text}
                 <i className="fa-solid fa-arrow-right-long px-2"></i>
-            </button>
-        </>
+            </Link>
+        );
+    }
+
+    return (
+        <button type="button" className={className}>
+            {text}
+            <i className="fa-solid fa-arrow-right-long px-2"></i>
+        </button>
     )
 }
 
