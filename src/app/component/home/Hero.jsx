@@ -13,7 +13,7 @@ const Hero = () => {
 
             {/* Hero overlay content */}
             <div
-                className="absolute inset-0 z-10 flex min-h-screen flex-col justify-between gap-47 sm:gap-0">
+                className="absolute inset-0 z-10 flex min-h-screen flex-col justify-between gap-auto sm:gap-0">
 
                 <Header />
 
