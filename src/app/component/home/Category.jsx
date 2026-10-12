@@ -28,8 +28,8 @@ const Category = async () => {
 
 
             <div className="product-list mt-5 w-auto gap-2 flex flex-row overflow-x-auto">
-                {products.map((product) => (
-                   <ProductCard id={product.id} title={product.title} thumbnail={product.thumbnail}/>
+                {[...products].sort(() => Math.random() - 0.5).map((product) => (
+                   <ProductCard product={product}/>
                 ))}
             </div>
         </section>
