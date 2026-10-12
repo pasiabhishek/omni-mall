@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 const NavigateButton = ({ text, href }) => {
-    const className = "bg-red-100 text-gray-950 w-35 sm:w-50 py-3 rounded-3xl flex justify-center items-center hover:translate-y-[-5px] duration-100";
+    const className = "bg-red-100 text-gray-950 w-35 sm:w-50 py-3 rounded-3xl flex justify-center items-center text-base font-medium hover:translate-y-[-5px] duration-100";
 
     if (href) {
         return (

@@ -8,18 +8,16 @@ const ProductDetailCard = ({ product }) => {
 
     return (
         <div className="w-full">
-            <div className="product-container flex flex-col sm:flex-row justify-center gap-2 min-h-[80vh] border-b border-gray-300">
-                
+            <div className="product-container mx-auto flex max-w-7xl flex-col gap-2 border-b border-gray-300 sm:flex-row sm:items-stretch">
                 {/* Product Images */}
-                <div className="w-full sm:w-[30vw] sm:flex-1 lg:flex-none lg:w-[30vw] bg-amber-50 min-h-[400px] sm:min-h-0 sm:h-auto flex justify-center items-center flex-col p-4 sm:p-3">
-                    
+                <div className="flex w-full flex-col items-center justify-center bg-amber-50 p-4 sm:w-[38%] sm:p-3 lg:w-[40%]">
                     <img
-                        className="w-auto max-w-full h-auto max-h-[300px] sm:h-[45%] sm:max-h-none object-contain duration-150 hover:translate-y-[-25px]"
+                        className="h-auto max-h-[300px] w-auto max-w-full object-contain duration-150 hover:-translate-y-2"
                         src={imagePreview}
                         alt={product.title}
                     />
 
-                    <div className="grid grid-cols-3 gap-1.5 w-full max-w-[400px] sm:max-w-full sm:h-[40%] mt-7 justify-center">
+                    <div className="mt-7 grid w-full max-w-[420px] grid-cols-3 gap-1.5 sm:max-w-none">
                         {product.images.map((img, index) => {
                             return (
                                 <img
@@ -27,7 +25,7 @@ const ProductDetailCard = ({ product }) => {
                                     src={img}
                                     alt={`${product.title} ${index + 1}`}
                                     onClick={() => setImagePreview(img)}
-                                    className="w-full h-20 sm:h-24 md:h-28 lg:h-32 object-contain col-span-1 row-span-1 border-2 border-gray-450 p-2 sm:p-3 duration-150 hover:translate-y-[-10px] cursor-pointer"
+                                    className="h-20 w-full cursor-pointer border-2 border-gray-450 object-contain p-2 duration-150 hover:-translate-y-1 sm:h-24 md:h-28 lg:h-32"
                                 />
                             );
                         })}
@@ -35,62 +33,64 @@ const ProductDetailCard = ({ product }) => {
                 </div>
 
                 {/* Product Information */}
-                <div className="w-full sm:flex-1 lg:flex-none lg:w-[50vw] p-5 sm:p-6 md:p-8 lg:p-10 bg-amber-50 text-gray-950 min-h-[450px] sm:min-h-0 gap-4 sm:gap-3 flex flex-col justify-start items-start duration-150 hover:translate-y-[-25px]">
-                    <div className="w-full">
-                        <p className="text-gray-400 text-[0.8rem] capitalize">
-                            {product.category}
+                <div className="flex w-full flex-col justify-center bg-amber-50 p-5 text-gray-950 sm:w-[62%] sm:p-6 md:p-8 lg:p-10">
+                    <div className="mx-auto flex w-full max-w-xl flex-col gap-4">
+                        <div>
+                            <p className="text-[0.8rem] capitalize text-gray-400">
+                                {product.category}
+                            </p>
+
+                            <h1 className="mt-2 text-[1.4rem] font-bold capitalize leading-tight text-gray-950 sm:text-[1.5rem] md:text-[1.6rem]">
+                                {product.title}
+                            </h1>
+                        </div>
+
+                        <div className="flex items-center gap-2 text-[1rem] text-gray-700">
+                            <span>{product.rating}</span>
+                            <i className="fa-solid fa-star text-yellow-500"></i>
+                        </div>
+
+                        <div className="text-[1.3rem] font-bold capitalize text-gray-950">
+                            <span className="mr-2 text-[1rem] font-medium text-red-500">
+                                -{product.discountPercentage}%
+                            </span>
+                            <span>{product.price} $</span>
+                        </div>
+
+                        <p className="text-[0.9rem] font-bold capitalize text-gray-800">
+                            {product.brand}
                         </p>
 
-                        <h1 className="mt-2 text-gray-950 text-[1.4rem] sm:text-[1.5rem] md:text-[1.6rem] font-bold capitalize break-words leading-tight">
-                            {product.title}
-                        </h1>
-                    </div>
+                        <p className="text-[0.8rem] capitalize leading-relaxed text-gray-800">
+                            {product.description}
+                        </p>
 
-                    <div className="w-full flex items-center gap-2 text-gray-700 text-[1rem]">
-                        <span>{product.rating}</span>
-                        <i className="fa-solid fa-star text-yellow-500"></i>
-                    </div>
+                        <div className="flex flex-col gap-3 py-3 font-bold md:flex-row md:gap-6">
+                            <span>
+                                <i className="fa-solid fa-circle-check"></i>{" "}
+                                {product.warrantyInformation}
+                            </span>
 
-                    <div className="w-full text-gray-950 font-bold text-[1.3rem] capitalize">
-                        <span className="text-red-500 font-medium text-[1rem] mr-2">
-                            -{product.discountPercentage}%
-                        </span>
-                        <span>{product.price} $</span>
-                    </div>
+                            <span>
+                                <i className="fa-solid fa-truck-fast"></i>{" "}
+                                {product.shippingInformation}
+                            </span>
+                        </div>
 
-                    <p className="w-full text-gray-800 text-[0.9rem] font-bold capitalize">
-                        {product.brand}
-                    </p>
+                        <p className="text-[1.3rem] font-bold text-green-800 sm:text-[1.5rem]">
+                            {product.availabilityStatus}
+                        </p>
 
-                    <p className="w-full text-gray-800 text-[0.8rem] capitalize leading-relaxed break-words">
-                        {product.description}
-                    </p>
-
-                    <div className="w-full flex flex-col md:flex-row gap-3 md:gap-6 py-3 font-bold">
-                        <span className="break-words">
-                            <i className="fa-solid fa-circle-check"></i>{" "}
-                            {product.warrantyInformation}
-                        </span>
-
-                        <span className="break-words">
-                            <i className="fa-solid fa-truck-fast"></i>{" "}
-                            {product.shippingInformation}
-                        </span>
-                    </div>
-
-                    <p className="w-full text-[1.3rem] sm:text-[1.5rem] text-green-800 font-bold">
-                        {product.availabilityStatus}
-                    </p>
-
-                    <div className="w-full flex flex-col min-[400px]:flex-row gap-2 my-2.5">
-                        <NavigateButton
-                            text="Buy Now"
-                            href={`/product/buy-now/${product.id}`}
-                        />
-                        <NavigateButton
-                            text="Add Cart"
-                            href="/Cart"
-                        />
+                        <div className="mt-2 flex w-full flex-col gap-2 min-[400px]:flex-row">
+                            <NavigateButton
+                                text="Buy Now"
+                                href={`/product/buy-now/${product.id}`}
+                            />
+                            <NavigateButton
+                                text="Add Cart"
+                                href="/Cart"
+                            />
+                        </div>
                     </div>
                 </div>
             </div>

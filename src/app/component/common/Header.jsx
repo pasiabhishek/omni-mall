@@ -20,13 +20,13 @@ const Header = () => {
                     <form className="flex w-full min-w-0 items-center rounded-2xl border border-white/20 bg-white/10 p-1 py-1 backdrop-blur-md sm:p-2 sm:py-1">
 
                         <button type="button" className="shrink-0 p-1 py-0 sm:p-1">
-                            <i className="fa-solid fa-magnifying-glass p-2 text-[12px]" />
+                            <i className="fa-solid fa-magnifying-glass p-2 text-[14px]" />
                         </button>
 
                         <input
                             type="text"
                             placeholder="search"
-                            className="w-full min-w-0 border-0 bg-transparent px-2 text-sm font-bold capitalize text-amber-100 outline-0 sm:px-4"
+                            className="w-full min-w-0 border-0 bg-transparent px-2 text-base font-bold capitalize text-amber-100 outline-0 sm:px-4"
                         />
 
                     </form>
