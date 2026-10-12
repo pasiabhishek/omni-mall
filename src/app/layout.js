@@ -4,6 +4,7 @@ import "lenis/dist/lenis.css";
 import SmoothScroll from "./component/common/SmoothScroll";
 import MouseFollower from "./component/common/MouseFollower";
 import Header from "./component/common/Header";
+import { getCanonicalUrl, serializeJsonLd, siteUrl } from "./seo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,11 +17,66 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Your Store | Online Shopping",
-  description: "Discover quality products at great prices.",
+  ...(siteUrl ? { metadataBase: siteUrl } : {}),
+  title: {
+    default: "Omni Mall | Furniture, Lighting & Home Accessories",
+    template: "%s | Omni Mall",
+  },
+  description:
+    "Discover furniture, lighting, and home accessories selected to bring personality to your space at Omni Mall.",
+  applicationName: "Omni Mall",
+  keywords: [
+    "Omni Mall",
+    "online shopping",
+    "furniture",
+    "lighting",
+    "home accessories",
+  ],
+  creator: "Omni Mall",
+  publisher: "Omni Mall",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    siteName: "Omni Mall",
+    locale: "en_US",
+    title: "Omni Mall | Furniture, Lighting & Home Accessories",
+    description:
+      "Discover furniture, lighting, and home accessories selected to bring personality to your space.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Omni Mall | Furniture, Lighting & Home Accessories",
+    description:
+      "Discover furniture, lighting, and home accessories selected to bring personality to your space.",
+  },
 };
 
 export default function RootLayout({ children }) {
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Omni Mall",
+    description:
+      "An online store for furniture, lighting, and home accessories.",
+    knowsAbout: ["Furniture", "Lighting", "Home accessories"],
+    ...(siteUrl
+      ? {
+          url: siteUrl.toString(),
+          logo: getCanonicalUrl("/images/brand-logo.png"),
+        }
+      : {}),
+  };
+
   return (
     <html
       lang="en"
@@ -46,6 +102,12 @@ export default function RootLayout({ children }) {
         <SmoothScroll />
         <MouseFollower />
         {/* <Header/> */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: serializeJsonLd(organizationSchema),
+          }}
+        />
         {children}
       </body>
     </html>

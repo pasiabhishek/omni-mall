@@ -3,6 +3,30 @@ import React from 'react';
 import { fetchProducts } from '../services/api';
 import ProductCard from '../component/common/ProductCard';
 import Header from '../component/common/Header';
+import { getCanonicalUrl, serializeJsonLd } from '../seo';
+
+export const metadata = {
+    title: 'Shop Furniture, Lighting & Home Essentials',
+    description:
+        'Browse the Omni Mall collection of furniture, lighting, and home accessories. Compare product details and find pieces for your space.',
+    ...(getCanonicalUrl('/product')
+        ? { alternates: { canonical: getCanonicalUrl('/product') } }
+        : {}),
+    openGraph: {
+        type: 'website',
+        siteName: 'Omni Mall',
+        locale: 'en_US',
+        title: 'Shop Furniture, Lighting & Home Essentials',
+        description:
+            'Browse furniture, lighting, and home accessories at Omni Mall.',
+        ...(getCanonicalUrl('/product') ? { url: getCanonicalUrl('/product') } : {}),
+    },
+    twitter: {
+        title: 'Shop Furniture, Lighting & Home Essentials',
+        description:
+            'Browse furniture, lighting, and home accessories at Omni Mall.',
+    },
+};
 
 const Page = async () => {
     let products = [];
@@ -13,8 +37,36 @@ const Page = async () => {
         console.error(error);
     }
 
+    const itemListSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: 'Shop Furniture, Lighting & Home Essentials',
+        description:
+            'Browse the Omni Mall collection of furniture, lighting, and home accessories.',
+        ...(getCanonicalUrl('/product')
+            ? { url: getCanonicalUrl('/product') }
+            : {}),
+        mainEntity: {
+            '@type': 'ItemList',
+            itemListElement: products.map((product, index) => ({
+                '@type': 'ListItem',
+                position: index + 1,
+                name: product.title,
+                ...(getCanonicalUrl(`/product/${product.id}`)
+                    ? { url: getCanonicalUrl(`/product/${product.id}`) }
+                    : {}),
+            })),
+        },
+    };
+
     return (
         <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: serializeJsonLd(itemListSchema),
+                }}
+            />
             <div className="bg-gray-950">
                 <Header />
 
