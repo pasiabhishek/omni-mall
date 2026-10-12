@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import NavigateButton from "../common/NavigateButton";
 
 const ProductDetailCard = ({ product }) => {
     const [imagePreview, setImagePreview] = useState(product.thumbnail);
@@ -30,7 +31,7 @@ const ProductDetailCard = ({ product }) => {
                     </div>
                 </div>
 
-                <div className="w-[50vw] p-10 bg-amber-50 text-gray-950 h-full gap-3 flex flex-col justify-around duration-150 hover:translate-y-[-25px]">
+                <div className="w-[50vw] p-10 bg-amber-50 text-gray-950 h-full gap-2 flex flex-col justify-around duration-150 hover:translate-y-[-25px]">
                     <p className="text-gray-400 text-[0.8rem] capitalize">
                         {product.category}
                     </p>
@@ -73,6 +74,10 @@ const ProductDetailCard = ({ product }) => {
                     <p className="text-[1.5rem] text-green-800 font-bold">
                         {product.availabilityStatus}
                     </p>
+                   <div className="flex flex-row gap-2 my-2.5">
+                     <NavigateButton text="Buy Now" href={`/product/buy-now/${product.id}`}/>
+                    <NavigateButton text="Add Cart" href="/Cart"/>
+                   </div>
                 </div>
             </div>
         </div>
