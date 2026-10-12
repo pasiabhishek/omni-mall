@@ -33,7 +33,7 @@ const Page = async () => {
                         </p>
                     </header>
 
-                    <div className="mx-auto grid w-full max-w-7xl auto-rows-auto grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 m-auto justify-center items-center">
+                    <div className="mx-auto grid w-full max-w-7xl auto-rows-auto grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 justify-center items-center">
                         {[...products].sort(()=>Math.random()-0.5).map((product) => (
                             <div
                                 key={product.id}
