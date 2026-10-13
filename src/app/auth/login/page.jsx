@@ -9,72 +9,101 @@ const Page = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
   };
 
   return (
     <>
       <Header />
-      <div className=" font-mono text-amber-50 flex justify-center items-top pt-7 w-full h-screen bg-[#faecdc]">
+
+      <main className="min-h-screen w-full bg-[#faecdc] px-4 py-8 sm:px-6 flex justify-center items-start font-mono">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="bg-white-800 text-[#292929] border border-gray-300 p-7 h-100 rounded-[15px] w-100 flex justify-around flex-col  bg-[#FFF5E9]"
+          className="w-full max-w-md rounded-[15px] border border-gray-300 bg-[#FFF5E9] p-5 sm:p-7 flex flex-col gap-5 text-[#292929] shadow-sm"
         >
-          <h2
-            className="text-3xl text-left capitalize">login</h2>
-          <div
-            className="text-left flex  flex-col justify-around h-20">
-            <label className="font-semibold text-gray-500">Username</label>
+          <h2 className="text-3xl text-left capitalize">
+            Login
+          </h2>
+
+          {/* Username */}
+          <div className="flex flex-col gap-2">
+            <label
+              htmlFor="userName"
+              className="font-semibold text-gray-500"
+            >
+              Username
+            </label>
 
             <input
-              placeholder="username"
-              className="border border-gray-400 rounded px-2 w-85  h-10 text-left font-medium capitalize bg-[#fff]"
               type="text"
-              id="FirstName"
+              id="userName"
+              placeholder="username"
+              autoComplete="username"
+              className="w-full h-10 rounded border border-gray-400 bg-white px-3 font-medium capitalize focus:outline-none focus:ring-2 focus:ring-green-500"
               {...register("userName", {
-                required: "This field is required",
+                required: "Username is required",
               })}
             />
 
             {errors.userName && (
-              <p className="text-red-600 font-semibold text-7xl">{errors.userName.message}</p>
+              <p className="text-sm font-medium text-red-600">
+                {errors.userName.message}
+              </p>
             )}
           </div>
-          <div className="text-left flex  flex-col justify-around h-20">
-            <label className="font-semibold text-gray-500">Password</label>
+
+          {/* Password */}
+          <div className="flex flex-col gap-2">
+            <label
+              htmlFor="password"
+              className="font-semibold text-gray-500"
+            >
+              Password
+            </label>
+
             <input
-              placeholder="password"
-              className="border border-gray-400 rounded px-2 w-85  h-10 text-left font-medium capitalize  bg-[#fff]"
               type="password"
-              id="FirstName"
-              {...register("pasword", {
-                required: "This field is required",
+              id="password"
+              placeholder="password"
+              autoComplete="current-password"
+              className="w-full h-10 rounded border border-gray-400 bg-white px-3 font-medium focus:outline-none focus:ring-2 focus:ring-green-500"
+              {...register("password", {
+                required: "Password is required",
               })}
             />
 
-            {errors.pasword && (
-              <p className="text-red-600 font-semibold">{errors.pasword.message}</p>
+            {errors.password && (
+              <p className="text-sm font-medium text-red-600">
+                {errors.password.message}
+              </p>
             )}
           </div>
+
+          {/* Submit Button */}
           <button
             type="submit"
-            className=" rounded-3xl px-2 w-85  h-10 font-semibold font-medium capitalize bg-[#50b863] text-center text-amber-50"
-          >Submit</button>
-          <p className="text-center text-[10px]">
-            Create a new account? 
+            disabled={isSubmitting}
+            className="h-11 w-full rounded-3xl bg-[#50b863] px-4 font-semibold capitalize text-white transition-colors hover:bg-[#419e52] disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            {isSubmitting ? "Logging in..." : "Submit"}
+          </button>
+
+          {/* Signup Link */}
+          <p className="text-center text-xs">
+            Create a new account?{" "}
             <Link
               href="/auth/signup"
-              className="text-blue-700 underline"
-            >create 
+              className="text-blue-700 underline hover:text-blue-900"
+            >
+              Create
             </Link>
           </p>
-
         </form>
-      </div>
+      </main>
     </>
   );
 };
