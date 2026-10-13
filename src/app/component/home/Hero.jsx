@@ -36,7 +36,7 @@ const Hero = () => {
                         <div
                             className="my-5 flex flex-wrap gap-2">
                             <NavigateButton text="Discover" href="/product" />
-                            <NavigateButton text="Login" herf="/auth/login" />
+                            <NavigateButton text="Login" href="/auth/login" />
                         </div>
 
                     </div>
