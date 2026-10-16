@@ -4,6 +4,7 @@ import "lenis/dist/lenis.css";
 import SmoothScroll from "./component/common/SmoothScroll";
 import MouseFollower from "./component/common/MouseFollower";
 import Header from "./component/common/Header";
+import Footer from "./component/common/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,6 +48,7 @@ export default function RootLayout({ children }) {
         <MouseFollower />
         {/* <Header/> */}
         {children}
+        <Footer />
       </body>
     </html>
   );

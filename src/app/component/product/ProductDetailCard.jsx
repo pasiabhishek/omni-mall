@@ -1,10 +1,18 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import { addToCart } from "@/app/services/cart";
 import NavigateButton from "../common/NavigateButton";
 
 const ProductDetailCard = ({ product }) => {
     const [imagePreview, setImagePreview] = useState(product.thumbnail);
+    const router = useRouter();
+
+    const handleAddToCart = () => {
+        addToCart(product);
+        router.push("/cart");
+    };
 
     return (
         <div className="w-full">
@@ -86,10 +94,14 @@ const ProductDetailCard = ({ product }) => {
                                 text="Buy Now"
                                 href={`/product/buy-now/${product.id}`}
                             />
-                            <NavigateButton
-                                text="Add Cart"
-                                href="/Cart"
-                            />
+                            <button
+                                type="button"
+                                onClick={handleAddToCart}
+                                className="flex w-35 items-center justify-center rounded-3xl bg-red-100 py-3 text-base font-medium text-gray-950 duration-100 hover:-translate-y-1 sm:w-50"
+                            >
+                                Add to cart
+                                <i className="fa-solid fa-cart-plus px-2" aria-hidden="true" />
+                            </button>
                         </div>
                     </div>
                 </div>
